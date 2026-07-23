@@ -18,11 +18,14 @@ def veritabaninda_ara(soru):
         eslesti = False
         
         for parca in parcalar:
-            if len(parca) > 1 and parca in soru_kucuk:
+            if len(parca) > 2 and parca in soru_kucuk:
                 eslesti = True
                 break
         
-        if eslesti or bolum_kucuk in soru_kucuk:
+        if bolum_kucuk in soru_kucuk or eslesti:
+            if "mr" in soru_kucuk and "mr" not in bolum_kucuk:
+                continue
+                
             conn.close()
             return (f"Merhaba! Sorduğunuz {bolum_adi} için size yardımcı olmaktan memnuniyet duyarım. "
                     f"Bu alan {kat} katında, {blok_koridor} bölgesinde yer almaktadır. "
